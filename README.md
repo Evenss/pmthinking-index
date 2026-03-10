@@ -87,7 +87,3 @@ pmthinking-index/
 ## 📄 许可证
 
 MIT License
-
----
-
-**在线预览**: http://172.20.13.101:8889
