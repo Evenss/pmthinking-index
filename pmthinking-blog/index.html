@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品沉思录 - 完整索引</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --border-color: #eaeaea;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Serif SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--text-tertiary);
+            font-weight: 400;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+            pointer-events: none;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Article List */
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .article-card {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            align-items: center;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .article-cover {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+        }
+
+        .article-info {
+            min-width: 0;
+        }
+
+        .article-number {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .article-link {
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .article-link:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .page-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .article-card {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .article-cover {
+                width: 60px;
+                height: 75px;
+            }
+
+            .article-link {
+                grid-column: 2;
+                justify-self: start;
+            }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">产品沉思录<span>完整索引</span></a>
+            <div class="search-box">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="搜索文章标题..." id="searchInput">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>加载文章中...</p>
+        </div>
+
+        <div class="article-list" id="articleList"></div>
+
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://read.pmthinking.com/" target="_blank">产品沉思录官网</a>
+                <a href="https://pmthinking.notion.site/" target="_blank">Notion 主页</a>
+                <a href="https://xiaobot.net/p/sheeppress" target="_blank">羔羊计划</a>
+                <a href="https://www.pmthinking.com/" target="_blank">主站</a>
+            </div>
+            <p class="footer-text">© 2026 产品沉思录索引 · 数据来源：read.pmthinking.com</p>
+        </div>
+    </footer>
+
+    <script>
+        let articles = [];
+        let filteredArticles = [];
+        const itemsPerPage = 20;
+        let currentPage = 1;
+
+        // Load articles data
+        async function loadArticles() {
+            try {
+                const response = await fetch('articles.json');
+                const data = await response.json();
+                articles = data;
+                filteredArticles = [...articles];
+                
+                renderArticles();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">😕</div>
+                        <p>加载失败，请刷新页面重试</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render articles for current page
+        function renderArticles() {
+            const list = document.getElementById('articleList');
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageArticles = filteredArticles.slice(start, end);
+
+            if (pageArticles.length === 0) {
+                list.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <p>没有找到相关文章</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = pageArticles.map((article, index) => `
+                <div class="article-card">
+                    <img 
+                        src="${article.cover}" 
+                        alt="${article.title}"
+                        class="article-cover"
+                        loading="lazy"
+                        onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 100%22><rect fill=%22%23f5f5f5%22 width=%2280%22 height=%22100%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2212%22>封面</text></svg>'"
+                    >
+                    <div class="article-info">
+                        <div class="article-number">第 ${start + index + 1} 篇 · ID: ${article.id}</div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <div class="article-meta">
+                            <span>Notion ID: ${article.id}</span>
+                        </div>
+                    </div>
+                    <a href="${article.notion}" target="_blank" class="article-link">查看原文 →</a>
+                </div>
+            `).join('');
+
+            renderPagination();
+        }
+
+        // Render pagination
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let html = '';
+            
+            // Previous
+            if (currentPage > 1) {
+                html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})">← 上一页</button>`;
+            }
+
+            // Page numbers
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+
+            // Next
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})">下一页 →</button>`;
+            }
+
+            pagination.innerHTML = html;
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderArticles();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (!query) {
+                filteredArticles = [...articles];
+            } else {
+                filteredArticles = articles.filter(article => 
+                    article.title.toLowerCase().includes(query) ||
+                    article.id.toString().includes(query)
+                );
+            }
+            
+            currentPage = 1;
+            renderArticles();
+        });
+
+        // Initialize
+        loadArticles();
+    </script>
+</body>
+</html>
